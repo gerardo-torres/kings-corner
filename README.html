@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="assets/style.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="kings-corner">King's Corner</h1>
+<pre><code>Description:    Terminal-based implementation of the King&#39;s Corner card game (solitare style)
+Author:         Gerardo Torres
+Date:           9/22/2018
+Entry File:     main.py
+Meta Files:     README.md, README.html</code></pre>
+<h3 id="rules">Rules</h3>
+<p>In this card game, there is a 4-by-4 grid of slots. Each slot is initially empty with all the cards being shuffled into a main stack from which the player will select the top most card.</p>
+<p>There are special cards which must be placed in their specified slots in order to win the game.</p>
+<p>The special cards are and their placements are:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Card</th>
+<th>place on grid</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>King</td>
+<td>four corners</td>
+</tr>
+<tr class="even">
+<td>Queen</td>
+<td>top and bottom</td>
+</tr>
+<tr class="odd">
+<td>Jack</td>
+<td>left and right</td>
+</tr>
+</tbody>
+</table>
+<p>The objective of the game is to have all these special cards in their correct place. Cards that are not the special cards are treated as their number values and can be placed anywhere on the grid (although the player should try to avoid placing them in the slots where the special cards should be).</p>
+<p>Once the board is filled with cards and the next card from the pile is NOT a special card, the player must remove pairs of cards that add up to ten (Ace is counted as a 1). Once all the cards that add up to ten are removed, the next card from the pile can be placed.</p>
+<p>If the board is filled with cards and the next card IS a special card OR the special card cannot be placed in its specified slot, the game is over.</p>
+<h3 id="playing">Playing</h3>
+<p>The board will be represented in the terminal as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>King</td>
+<td><code>k</code></td>
+</tr>
+<tr class="even">
+<td>Queen</td>
+<td><code>q</code></td>
+</tr>
+<tr class="odd">
+<td>Jack</td>
+<td><code>j</code></td>
+</tr>
+<tr class="even">
+<td>Empty</td>
+<td><code>-</code></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
