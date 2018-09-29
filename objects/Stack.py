@@ -1,6 +1,21 @@
+from random import shuffle
+from objects.Card import Card
+
 class Stack:
     def __init__(self):
         self.data = []
+        for i in range(1, 5):
+            for card_val in range(1, 14):
+                if (card_val < 11):
+                    curr_card = Card(str(card_val))
+                elif (card_val == 11):
+                    curr_card = Card("k")
+                elif (card_val == 12):
+                    curr_card = Card("q")
+                else:
+                    curr_card = Card("j")
+                self.data.append(curr_card)
+        shuffle(self.data)  # shuffle the card stack
 
     def __le__(self):
         return len(self.data)

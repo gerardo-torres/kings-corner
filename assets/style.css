@@ -1,3 +1,11 @@
+h1 {
+  text-align: center;
+}
+
+h3 {
+  color: rgb(26, 26, 105);
+}
+
 body {
   background-color: white;
   max-width: 760px;
@@ -6,14 +14,13 @@ body {
 }
 
 pre code {
-  background-color: rgb(232, 234, 241);
   border: 1px solid #999;
   display: block;
   padding: 20px;
 }
 
 code {
-  background-color: rgb(232, 234, 241);
+  background-color: rgb(240, 242, 250);
   display: inline-block;  
 }
 

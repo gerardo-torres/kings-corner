@@ -15,18 +15,29 @@
 <h1 id="kings-corner">King's Corner</h1>
 <pre><code>Description:    Terminal-based implementation of the King&#39;s Corner card game (solitare style)
 Author:         Gerardo Torres
-Date:           9/22/2018
+Date:           9/29/2018
 Entry File:     main.py
 Meta Files:     README.md, README.html</code></pre>
+<ul>
+<li><a href="#king-s-corner">King's Corner</a>
+<ul>
+<li><a href="#rules">Rules</a></li>
+<li><a href="#playing">Playing</a></li>
+<li><a href="#design-and-data-structures">Design and Data Structures</a></li>
+<li><a href="#tools">Tools</a></li>
+<li><a href="#difficulties-and-limitations">Difficulties and Limitations</a></li>
+<li><a href="#other-files">Other files</a></li>
+</ul></li>
+</ul>
 <h3 id="rules">Rules</h3>
 <p>In this card game, there is a 4-by-4 grid of slots. Each slot is initially empty with all the cards being shuffled into a main stack from which the player will select the top most card.</p>
 <p>There are special cards which must be placed in their specified slots in order to win the game.</p>
-<p>The special cards are and their placements are:</p>
+<p>The special cards and their placements are:</p>
 <table>
 <thead>
 <tr class="header">
 <th>Card</th>
-<th>place on grid</th>
+<th>Place on grid</th>
 </tr>
 </thead>
 <tbody>
@@ -36,18 +47,31 @@ Meta Files:     README.md, README.html</code></pre>
 </tr>
 <tr class="even">
 <td>Queen</td>
-<td>top and bottom</td>
+<td>left and right</td>
 </tr>
 <tr class="odd">
 <td>Jack</td>
-<td>left and right</td>
+<td>top and bottom</td>
 </tr>
 </tbody>
 </table>
-<p>The objective of the game is to have all these special cards in their correct place. Cards that are not the special cards are treated as their number values and can be placed anywhere on the grid (although the player should try to avoid placing them in the slots where the special cards should be).</p>
+<p>The objective of the game is to have all these special cards in their correct place (regardless of where the number cards are). This would look like <a href="http://www.lenagames.com/bp_files/rul/g_kings_corners.gif">so</a>. Once the player achieves that, they win the game!</p>
+<p>Special cards can be placed anywhere on their corresponding places. Cards that are not the special cards are treated as their number values and can be placed anywhere on the grid.</p>
 <p>Once the board is filled with cards and the next card from the pile is NOT a special card, the player must remove pairs of cards that add up to ten (Ace is counted as a 1). Once all the cards that add up to ten are removed, the next card from the pile can be placed.</p>
-<p>If the board is filled with cards and the next card IS a special card OR the special card cannot be placed in its specified slot, the game is over.</p>
+<p>The game is over when:</p>
+<ul>
+<li>The next card from the pile is a special card and it cannot be placed in its specified slot</li>
+<li>The board is filled and there are no pairs that add up to 10</li>
+</ul>
 <h3 id="playing">Playing</h3>
+<p>On a terminal, run the python file:</p>
+<pre><code>python3 main.py</code></pre>
+<p>You will be greeted with a command-line menu.</p>
+<ul>
+<li>Enter the <code>play</code> command in to begin the game.</li>
+<li>To read the rules, enter the <code>rules</code> command.</li>
+<li>To exit the program, enter the <code>close</code> command.</li>
+</ul>
 <p>The board will be represented in the terminal as follows:</p>
 <table>
 <thead>
@@ -75,5 +99,48 @@ Meta Files:     README.md, README.html</code></pre>
 </tr>
 </tbody>
 </table>
+<h3 id="design-and-data-structures">Design and Data Structures</h3>
+<p>A object-oriented approach was taken as there are the following objects:</p>
+<ul>
+<li><code>Card</code>
+<ul>
+<li>represents a card in the game</li>
+<li>only contains <code>value</code>, a string of the value of the card</li>
+</ul></li>
+<li><code>Stack</code>
+<ul>
+<li>represents the stack of cards in the game</li>
+<li>contains randomized <code>Card</code> objects in an array-based last in, first out (LIFO) structure</li>
+</ul></li>
+<li><code>Board</code>
+<ul>
+<li>represents the 4-by-4 board in the game</li>
+<li>contains the user-submitted <code>Card</code> objects in a 2D-array-based structure</li>
+<li>contains a map to bring the <code>count_pair</code> method's runtime to <code>O(n)</code> where <code>n</code> is the number of slots</li>
+</ul></li>
+<li><code>Colors</code>
+<ul>
+<li>represents the colors of the special cards for ease-of-use</li>
+</ul></li>
+</ul>
+<p>Each of these objects have methods and data members that in order to make programming easier and more intuitive.</p>
+<p>In addition, the project was divided into two user-oriented loops:</p>
+<ul>
+<li><code>main()</code> which takes in the user's commands</li>
+<li><code>play()</code> which takes in the user's request to play the game and handled the gameplay</li>
+<li><code>delete_pairs()</code> which handles the user's inputs to eliminate pairs of cards</li>
+</ul>
+<h3 id="tools">Tools</h3>
+<p>Python was used for this program because it is my strongest language and it comes pre-installed with (most) unix systems.</p>
+<p><code>random</code> was the only external library that was used since the focus of the project was not on techniques of randomization.</p>
+<h3 id="difficulties-and-limitations">Difficulties and Limitations</h3>
+<p>A few difficulties that came up were</p>
+<ul>
+<li>the logic of deciding which indicies were valid</li>
+<li>the board's <code>count_pairs</code> method's runtime (it was inititally <code>O(n^2)</code>)</li>
+</ul>
+<p>A limitation of the project is that it does not deal with non-integer inputs well when deciding at which index to place a card (try inputing strings of characters multiple times).</p>
+<h3 id="other-files">Other files</h3>
+<p>This document was written in Markdown and coverted to HTML using <a href="https://gist.github.com/atelierbram/09c8fb742f1518f09ff9e4338ab8f7fb">Pandoc</a>. The CSS file, <code>assets/style.css</code> was used to make the document a little cleaner.</p>
 </body>
 </html>
